@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa de DJ Profissional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 50%, #4a148c 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dj-mixer {
+            background: linear-gradient(145deg, #2a1a4e, #1a0f2e);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+                        inset 0 1px 0 rgba(255, 215, 0, 0.1);
+            max-width: 1200px;
+            width: 100%;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .deck-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .deck {
+            background: linear-gradient(145deg, #1a0f2e, #0f0820);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .deck-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        .pad-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .pad {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .pad:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                        inset 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .pad.playing {
+            animation: pulse 0.3s ease;
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .kick { background: linear-gradient(145deg, #ff1744, #c41c3b); color: white; }
+        .snare { background: linear-gradient(145deg, #ffd700, #d4af37); color: black; }
+        .hihat { background: linear-gradient(145deg, #4ecdc4, #3da39a); color: white; }
+        .clap { background: linear-gradient(145deg, #ff6b6b, #cc5555); color: white; }
+
+        .bass { background: linear-gradient(145deg, #7c4dff, #6239cc); color: white; }
+        .synth { background: linear-gradient(145deg, #00e676, #00b359); color: white; }
+        .lead { background: linear-gradient(145deg, #ff4081, #cc3366); color: white; }
+        .chord { background: linear-gradient(145deg, #448aff, #3670cc); color: white; }
+
+        .vocal { background: linear-gradient(145deg, #e91e63, #b71851); color: white; }
+        .siren { background: linear-gradient(145deg, #ff9100, #cc7400); color: white; }
+        .horn { background: linear-gradient(145deg, #ffea00, #ccbb00); color: black; }
+        .scratch { background: linear-gradient(145deg, #76ff03, #5ecc02); color: black; }
+
+        .stop-all {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .stop-all button {
+            padding: 15px 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: linear-gradient(145deg, #d32f2f, #a92525);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .stop-all button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(211, 47, 47, 0.7);
+        }
+
+        .stop-all button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <h1>🎧 MESA DE DJ PRO 🎧</h1>
+    
+    <div class="dj-mixer">
+        <div class="deck-section">
+            <!-- DECK 1: DRUMS -->
+            <div class="deck">
+                <div class="deck-title">🥁 DRUMS</div>
+                <div class="pad-grid">
+                    <button class="pad kick" data-sound="kick" onclick="mudarEstado()">Kick</button>
+                    <button class="pad snare" data-sound="snare">Snare</button>
+                    <button class="pad hihat" data-sound="hihat">Hi-Hat</button>
+                    <button class="pad clap" data-sound="clap">Clap</button>
+                </div>
+            </div>
+
+            <!-- DECK 2: SYNTHS -->
+            <div class="deck">
+                <div class="deck-title">🎹 SYNTHS</div>
+                <div class="pad-grid">
+                    <button class="pad bass" data-sound="bass">Bass</button>
+                    <button class="pad synth" data-sound="synth">Synth</button>
+                    <button class="pad lead" data-sound="lead">Lead</button>
+                    <button class="pad chord" data-sound="chord">Chord</button>
+                </div>
+            </div>
+
+            <!-- DECK 3: FX -->
+            <div class="deck">
+                <div class="deck-title">🔊 FX & VOCAL</div>
+                <div class="pad-grid">
+                    <button class="pad vocal" data-sound="vocal">Vocal</button>
+                    <button class="pad siren" data-sound="siren">Siren</button>
+                    <button class="pad horn" data-sound="horn">Air Horn</button>
+                    <button class="pad scratch" data-sound="scratch">Scratch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stop-all">
+            <button id="stopAll">⏹️ STOP ALL</button>
+        </div>
+    </div>
+
+    <script>
+        // Event listeners para os pads (apenas visual)
+        document.querySelectorAll('.pad').forEach(pad => {
+            pad.addEventListener('click', function() {
+                this.classList.add('playing');
+                setTimeout(() => this.classList.remove('playing'), 300);
+            });
+        });
+
+        
+        document.getElementById('stopAll').addEventListener('click', function() {
+            document.querySelectorAll('.pad').forEach(pad => {
+                pad.classList.remove('playing');
+            });
+        });
+
+        // Suporte para teclado
+        document.addEventListener('keydown', function(e) {
+            const keyMap = {
+                'q': 'kick', 'w': 'snare', 'e': 'hihat', 'r': 'clap',
+                'a': 'bass', 's': 'synth', 'd': 'lead', 'f': 'chord',
+                'z': 'vocal', 'x': 'siren', 'c': 'horn', 'v': 'scratch'
+            };
+            
+            if (keyMap[e.key]) {
+                const pad = document.querySelector(`[data-sound="${keyMap[e.key]}"]`);
+                if (pad) pad.click();
+            }
+        });
+
+        async function mudarEstado() {
+            
+            enviarDados();
+        }
+
+        async function enviarDados() {
+        const botao = document.getElementById('botao-kick');
+        botao.disabled = true;
+
+        try {
+            const resposta = await fetch(`iot.php?estado=${estado}&valor=${valor}`);
+            const texto = await resposta.text();
+            console.log(texto);
+            
+        } catch (erro) {
+            console.error('Erro:', erro);
+        }
+
+        botao.disabled = false;
+        }
+    </script>
+</body>
+</html>
