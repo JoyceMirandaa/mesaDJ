@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa de DJ Profissional</title>
+    <title>Mesa de DJ iot</title>
     <style>
         * {
             margin: 0;
@@ -104,7 +104,7 @@
             50% { transform: scale(1.05); }
         }
 
-        .kick { background: linear-gradient(145deg, #ff1744, #c41c3b); color: white; }
+        .tambor { background: linear-gradient(145deg, #ff1744, #c41c3b); color: white; }
         .snare { background: linear-gradient(145deg, #ffd700, #d4af37); color: black; }
         .hihat { background: linear-gradient(145deg, #4ecdc4, #3da39a); color: white; }
         .clap { background: linear-gradient(145deg, #ff6b6b, #cc5555); color: white; }
@@ -149,7 +149,7 @@
     </style>
 </head>
 <body>
-    <h1>🎧 MESA DE DJ PRO 🎧</h1>
+    <h1>🎧 MESA DE DJ IOT 🎧</h1>
     
     <div class="dj-mixer">
         <div class="deck-section">
@@ -157,7 +157,9 @@
             <div class="deck">
                 <div class="deck-title">🥁 DRUMS</div>
                 <div class="pad-grid">
-                    <button class="pad kick" data-sound="kick" onclick="mudarEstado()">Kick</button>
+                    <form id="botoesvalor" action="iot.php">
+                        <button class="pad kick" data-sound="kick" type="submit" name="tambor" value="tambor">tambor</button>
+                    </form>
                     <button class="pad snare" data-sound="snare">Snare</button>
                     <button class="pad hihat" data-sound="hihat">Hi-Hat</button>
                     <button class="pad clap" data-sound="clap">Clap</button>
@@ -211,7 +213,7 @@
         // Suporte para teclado
         document.addEventListener('keydown', function(e) {
             const keyMap = {
-                'q': 'kick', 'w': 'snare', 'e': 'hihat', 'r': 'clap',
+                'q': 'tambor', 'w': 'snare', 'e': 'hihat', 'r': 'clap',
                 'a': 'bass', 's': 'synth', 'd': 'lead', 'f': 'chord',
                 'z': 'vocal', 'x': 'siren', 'c': 'horn', 'v': 'scratch'
             };
@@ -222,26 +224,44 @@
             }
         });
 
-        async function mudarEstado() {
-            
-            enviarDados();
-        }
+        const form = document.getElementById('botoesvalor');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Impede o envio padrão (que recarregaria a página)
 
-        async function enviarDados() {
-        const botao = document.getElementById('botao-kick');
-        botao.disabled = true;
+            try {
+                // Pega todos os dados do formulário
+                const dadosFormulario = new FormData(form);
 
-        try {
-            const resposta = await fetch(`iot.php?estado=${estado}&valor=${valor}`);
-            const texto = await resposta.text();
-            console.log(texto);
-            
-        } catch (erro) {
-            console.error('Erro:', erro);
-        }
+                // Converte o FormData em uma string de parâmetros (ex: ?usuario=Joao&idade=25)
+                const params = new URLSearchParams(dadosFormulario);
 
-        botao.disabled = false;
-        }
+                // Faz a requisição GET (acrescentando os parâmetros na URL)
+                const resposta = await fetch(`${form.action}?${params.toString()}`, {
+                    method: 'GET'
+                });
+
+                if (!resposta.ok) {
+                    throw new Error(`Erro HTTP: ${resposta.status}`);
+                }
+
+                const data = await resposta.text();
+                console.log('✅ Sucesso:', data);
+
+                // Exemplo: depois de sucesso, chama o iot.php
+                const valorBotao = 'alarme'; // Exemplo de valor
+                const respostaIot = await fetch(`iot.php?nome_som=${valorBotao}`);
+
+                if (!respostaIot.ok) {
+                    throw new Error(`Erro ao chamar iot.php: ${respostaIot.status}`);
+                }
+
+                const textoIot = await respostaIot.text();
+                console.log('🎵 Resposta do iot.php:', textoIot);
+
+            } catch (erro) {
+                console.error('❌ Ocorreu um erro:', erro);
+            }
+        });
     </script>
 </body>
 </html>
