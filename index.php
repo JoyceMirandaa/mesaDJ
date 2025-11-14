@@ -169,13 +169,6 @@
                 setTimeout(() => this.classList.remove('playing'), 300);
             });
         });
-        document.getElementById('stopAll').addEventListener('click', function() {
-            document.querySelectorAll('.pad').forEach(pad => {
-                pad.classList.remove('playing');
-            });
-        });
-    
-    
     </script>
 </body>
 </html>
