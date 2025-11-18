@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa DJ - iot</title>
+    <title>Mesa DJ - IOT</title>
+    <link rel="shortcut icon" type="imagex/png" href="./images/dj-mixer.ico">
     <style>
         * {
             margin: 0;
@@ -125,7 +126,7 @@
         <div class="deck-section">
             <!-- DECK 1: DRUMS -->
             <div class="deck">
-                <div class="deck-title">🥁 DRUMS</div>
+                <div class="deck-title">🎶 SONS</div>
                 <div class="pad-grid" id="status-message">
                     <button class="pad kick" onclick="sendKey('g')">Guitarra</button>
                     <button class="pad snare"onclick="sendKey('b')">Bateria</button>
