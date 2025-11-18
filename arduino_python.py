@@ -18,17 +18,17 @@ def main():
         val1 = '1' 
     elif musicas == 'snare': 
         val1 = '2' 
-    elif musicas > 'hihat':
+    elif musicas == 'hihat':
         val1 = '3'
-    elif musicas > 'clap':
+    elif musicas == 'clap':
         val1 = '4'
-    elif musicas > 'bass':
+    elif musicas == 'bass':
         val1 = '5'
-    elif musicas > 'synth':
+    elif musicas == 'synth':
         val1 = '6' 
-    elif musicas > 'lead':
+    elif musicas == 'lead':
         val1 = '7'  
-    elif musicas > 'chord':
+    elif musicas == 'chord':
         val1 = '8'
   
         

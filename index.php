@@ -46,7 +46,7 @@
 
         .deck-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit,  100px 100px;);
             gap: 30px;
             margin-bottom: 40px;
         }
@@ -69,7 +69,7 @@
 
         .pad-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -104,9 +104,9 @@
             50% { transform: scale(1.05); }
         }
 
-        .kick { background: linear-gradient(180deg, #ff1744, #B22222, #800000); color: #FA8072; font-family: Georgia, serif;}
-        .snare { background: linear-gradient(180deg, #FFD700,#DAA520, #B8860B); color: #F0E68C; font-family: Georgia, serif;}
-        .hihat { background: linear-gradient(180deg, #00BFFF, #1E90FF, #4169E1); color: #87CEEB; font-family: Georgia, serif;}
+        .kick { background: linear-gradient(180deg, #ff1744, #B22222, #800000); color: white; font-family: Georgia, serif;}
+        .snare { background: linear-gradient(180deg, #FFD700,#DAA520, #B8860B); color: white; font-family: Georgia, serif;}
+        .hihat { background: linear-gradient(180deg, #00BFFF, #1E90FF, #4169E1); color: white; font-family: Georgia, serif;}
         .clap { background: linear-gradient(180deg,#663399, #9400D3, #9932CC); color: white; font-family: Georgia, serif;}
 
         .bass { background: linear-gradient(180deg, #483D8B, #6A5ACD, #7B68EE); color: white; font-family: Georgia, serif;}
@@ -127,27 +127,20 @@
             <div class="deck">
                 <div class="deck-title">🥁 DRUMS</div>
                 <div class="pad-grid" id="status-message">
-                    <button class="pad kick" onclick="sendKey('k')">kick</button>
-                    <button class="pad snare"onclick="sendKey('w')">Snare</button>
-                    <button class="pad hihat" onclick="sendKey('e')">Hi-Hat</button>
-                    <button class="pad clap" onclick="sendKey('r')">Clap</button>
-                </div>
-            </div>
-
-            <!-- DECK 2: SYNTHS -->
-            <div class="deck">
-                <div class="deck-title">🎹 SYNTHS</div>
-                <div class="pad-grid">
-                    <button class="pad bass" onclick="sendKey('a')">Bass</button>
-                    <button class="pad synth"  onclick="sendKey('s')">Synth</button>
-                    <button class="pad lead"  onclick="sendKey('d')">Lead</button>
-                    <button class="pad chord"  onclick="sendKey('f')">Chord</button>
+                    <button class="pad kick" onclick="sendKey('g')">Guitarra</button>
+                    <button class="pad snare"onclick="sendKey('b')">Bateria</button>
+                    <button class="pad hihat" onclick="sendKey('p')">Piano</button>
+                    <button class="pad clap" onclick="sendKey('x')">Baixo</button>
+                    <button class="pad bass" onclick="sendKey('s')">Saxofone</button>
+                    <button class="pad synth"  onclick="sendKey('v')">Violão</button>
+                    <button class="pad lead"  onclick="sendKey('c')">Clarinete</button>
+                    <button class="pad chord"  onclick="sendKey('o')">Violino</button>
                 </div>
             </div>
     <script>
         const keyMap = {
-            'k': 'kick', 'w': 'snare', 'e': 'hihat', 'r': 'clap',
-            'a': 'bass', 's': 'synth', 'd': 'lead', 'f': 'chord',
+            'g': 'guitarra', 'b': 'bateria', 'p': 'piano', 'x': 'baixo',
+            's': 'saxofone', 'v': 'violao', 'c': 'clarinete', 'o': 'violino',
         }
         function sendKey(key){
             const soundName = keyMap[key];
