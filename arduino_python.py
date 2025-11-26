@@ -14,21 +14,21 @@ def main():
     banco.sons()
 
     musicas = banco.sons()
-    if musicas == 'kick': 
+    if musicas == 'guitarra': 
         val1 = '1' 
-    elif musicas == 'snare': 
+    elif musicas == 'bateria': 
         val1 = '2' 
-    elif musicas == 'hihat':
+    elif musicas == 'saxofone':
         val1 = '3'
-    elif musicas == 'clap':
+    elif musicas == 'piano':
         val1 = '4'
-    elif musicas == 'bass':
+    elif musicas == 'violao':
         val1 = '5'
-    elif musicas == 'synth':
+    elif musicas == 'clarinete':
         val1 = '6' 
-    elif musicas == 'lead':
+    elif musicas == 'violino':
         val1 = '7'  
-    elif musicas == 'chord':
+    elif musicas == 'baixo':
         val1 = '8'
   
         
