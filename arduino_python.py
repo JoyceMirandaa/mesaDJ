@@ -9,7 +9,7 @@ arduino = serial.Serial(porta,baudrate,timeout=1)
 
 
 def main():
-    musica_atual =""
+    musica_atual ="0"
     banco = Banco()
     banco.conectar()
     banco.sons()
@@ -17,10 +17,10 @@ def main():
    
     while True:
         musicas = banco.sons()
-        time.sleep(1)
+        # time.sleep(1)
         if musica_atual != musicas: 
             arduino.write(musicas.encode())
-            time.sleep(1)
+            
         musica_atual = musicas
             
             
