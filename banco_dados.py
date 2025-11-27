@@ -7,22 +7,29 @@ class Banco:
             host='paparella.com.br',
             user='paparell_deejay',
             password='@Senai2025',
-            database='sons'
+            database='paparell_deejay'
         )
 
     def sons(self):
         conexao = self.conectar()
         cursor = conexao.cursor()
+        # id = 89
+        # query = "SELECT nome_som FROM sons where id_som = %s"
+        # cursor.execute(query, (id,))
+        # valor = cursor.fetchone() # Trazer em formato de lista um dado só
+        # # print(valor)
 
-        cursor.execute("select * from sons")
-        valor = cursor.fetchall()
-
-        musicas = valor[0]
+        # musicas = valor
+        # # print(musicas)
+        
+        query = "SELECT * from sons"
+        cursor.execute(query)
+        valor = cursor.fetchone()
+        musicas = valor[1]
 
         conexao.commit()
         cursor.close()
         conexao.close()
-        print(musicas[2])
-        return musicas[2]
+        return musicas
 
 

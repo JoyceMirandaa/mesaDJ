@@ -1,38 +1,56 @@
 
 from banco_dados import Banco
 import serial
+import time
 
-porta ="COM3"
-baudrate = 9600
+porta ="COM5"
+baudrate = 115200
 arduino = serial.Serial(porta,baudrate,timeout=1)
 
 
 def main():
-    nome_aluno = 'Joyce'
+    musica_atual =""
     banco = Banco()
     banco.conectar()
     banco.sons()
 
-    musicas = banco.sons()
-    if musicas == 'guitarra': 
-        val1 = '1' 
-    elif musicas == 'bateria': 
-        val1 = '2' 
-    elif musicas == 'saxofone':
-        val1 = '3'
-    elif musicas == 'piano':
-        val1 = '4'
-    elif musicas == 'violao':
-        val1 = '5'
-    elif musicas == 'clarinete':
-        val1 = '6' 
-    elif musicas == 'violino':
-        val1 = '7'  
-    elif musicas == 'baixo':
-        val1 = '8'
-  
+   
+    while True:
+        musicas = banco.sons()
+        time.sleep(1)
+        if musica_atual != musicas: 
+            arduino.write(musicas.encode())
+            time.sleep(1)
+        musica_atual = musicas
+            
+            
+    #     flag = "musica_1"
+    #     nova_musica = "musica_1"
+    #     if(flag != nova_musica):
+    #          
+    # elif musicas == 'musica_2': 
+    #     flag = "musica_1"
+    #     val1 = "2" 
+    # elif musicas == 'musica_3':
+    #     flag = "musica_1"
+    #     val1 = "3"
+    # elif musicas == 'musica_4':
+    #     flag = "musica_1"
+    #     val1 = "4"
+    # elif musicas == 'musica_5':
+    #     flag = "musica_1"
+    #     val1 = "5"
+    # elif musicas == 'musica_6':
+    #     flag = "musica_1"
+    #     val1 = "6" 
+    # elif musicas == 'musica_7':
+    #     flag = "musica_1"
+    #     val1 = "7"  
+    # elif musicas == 'musica_8':
+    #     flag = "musica_1"
+    #     val1 = "8" 
+        print(musicas)
         
-    arduino.write(val1.encode())
 
 
 if __name__ == "__main__":
