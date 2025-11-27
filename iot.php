@@ -14,20 +14,21 @@ if (isset($_GET['nome_som'])) {
 
     if ($row_som) {
         $id_som = $row_som['id_som'];
-        $update_som = $conexao->prepare("UPDATE sons SET nome_som = ? WHERE id_som = ?");
-        $update_som->bind_param("si", $soundName, $id_som);
+        $update_som = $conexao->prepare("UPDATE sons SET nome_som = ? WHERE id_som = 89");
+        $update_som->bind_param("s", $soundName);
         if ($update_som->execute()) {
             echo "LED atualizado com sucesso.<br>";
         } else {
             echo "[ERRO] Falha ao atualizar LED.<br>";
         }
     } else {
-        $insert_som = $conexao->prepare("INSERT INTO sons (nome_som) VALUES (?)");
-        $insert_som->bind_param("s", $soundName);
-        if ($insert_som->execute()) {
-            echo "LED inserido com sucesso.<br>";
+        $id_som = $row_som['id_som'];
+        $update_som = $conexao->prepare("UPDATE sons SET nome_som = ? WHERE id_som = 89");
+        $update_som->bind_param("s", $soundName);
+        if ($update_som->execute()) {
+            echo "LED atualizado com sucesso.<br>";
         } else {
-            echo "[ERRO] Falha ao inserir LED.<br>";
+            echo "[ERRO] Falha ao atualizar LED.<br>";
         }
     }
 } else {

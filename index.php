@@ -82,6 +82,14 @@
         animation: pulse 0.3s ease;
         box-shadow: 0 0 30px currentColor;
     }
+
+    .button-pare{
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            min-height: 90px;
+    }
+
     @keyframes pulse {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
@@ -95,6 +103,7 @@
     .synth { background: linear-gradient(145deg, #00e676, #00b359); color: white; font-family: Georgia, serif;}
     .lead { background: linear-gradient(145deg, #DA70D6, #FF00FF, #FF69B4); color: white; font-family: Georgia, serif;}
     .chord { background: linear-gradient(145deg, #448aff, #3670cc); color: white; font-family: Georgia, serif;}
+    .stop { background: linear-gradient(180deg, #ff1744, #B22222, #800000); color: white; font-family: Georgia, serif;}
 
     @media (min-width: 1024px) {
         body {
@@ -133,6 +142,13 @@
             font-size: 1em;
             min-height: 200px;
         }
+
+        .button-pare{
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            min-height: 100px;
+        }
     }
 
 
@@ -152,17 +168,22 @@
                     <button class="pad kick" onclick="sendKey('g')">Música 1</button>
                     <button class="pad snare"onclick="sendKey('b')">Música 2</button>
                     <button class="pad hihat" onclick="sendKey('p')">Música 3</button>
-                    <button class="pad clap" onclick="sendKey('x')">Música 4</button>
+                    <button class="pad clap" onclick="sendKey('n')">Música 4</button>
                     <button class="pad bass" onclick="sendKey('s')">Música 5</button>
                     <button class="pad synth"  onclick="sendKey('v')">Música 6</button>
                     <button class="pad lead"  onclick="sendKey('c')">Música 7</button>
                     <button class="pad chord"  onclick="sendKey('o')">Música 8</button>
                 </div>
+                <div class="button-pare">
+                    <button class="pad stop" onclick="sendKey('x')">PARE</button>
+                </div>
             </div>
+            
     <script>
         const keyMap = {
-            'g': 'musica_1', 'b': 'musica_2', 'p': 'musica_3', 'x': 'musica_4',
-            's': 'musica_5', 'v': 'musica_6', 'c': 'musica_7', 'o': 'musica_8',
+            'g': '1', 'b': '2', 'p': '3', 'n': '4',
+            's': '5', 'v': '6', 'c': '7', 'o': '8',
+            'x': '0'
         }
         function sendKey(key){
             const soundName = keyMap[key];
