@@ -14,12 +14,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 20px;
+        padding-bottom: 80px;
+        padding: 10px;
         color: #fff;
     }
     h1 {
-        margin: 20px 0;
-        font-size: 2.1em;
+        font-size: 1.5em;
+        margin: 15px 0;
         text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
         letter-spacing: 3px;
         background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
@@ -30,7 +31,7 @@
     .dj-mixer {
         background: linear-gradient(145deg, #2a1a4e, #1a0f2e);
         border-radius: 30px;
-        padding: 40px;
+        padding: 20px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 215, 0, 0.1);
         max-width: 1200px;
         width: 100%;
@@ -45,7 +46,7 @@
     .deck {
         background: linear-gradient(145deg, #1a0f2e, #0f0820);
         border-radius: 20px;
-        padding: 25px;
+        padding: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         border: 1px solid rgba(255, 215, 0, 0.2);
     }
@@ -83,11 +84,13 @@
         box-shadow: 0 0 30px currentColor;
     }
 
-    .button-pare{
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            min-height: 90px;
+    .stop-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%s;
+        margin-top: auto;
+        padding: 30px 0 0 0;
     }
 
     @keyframes pulse {
@@ -103,53 +106,73 @@
     .synth { background: linear-gradient(145deg, #00e676, #00b359); color: white; font-family: Georgia, serif;}
     .lead { background: linear-gradient(145deg, #DA70D6, #FF00FF, #FF69B4); color: white; font-family: Georgia, serif;}
     .chord { background: linear-gradient(145deg, #448aff, #3670cc); color: white; font-family: Georgia, serif;}
-    .stop { background: linear-gradient(180deg, #ff1744, #B22222, #800000); color: white; font-family: Georgia, serif;}
+    
+    .stop-button { 
+        padding: 10px 30px;
+        font-size: 1em;
+        background: linear-gradient(180deg, #ff1744, #B22222, #800000); color: white; font-family: Georgia, serif;
+        border-radius: 10px; 
+        padding: 15px 50px; 
+        font-size: 1.2em; 
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    @media (min-width: 600px) {
+        h1 {
+            font-size: 2.1em; 
+        }
+        .dj-mixer {
+            padding: 20px;
+        }
+        
+        .pad-grid {
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px;
+        }
+        .pad {
+            min-height: 100px; 
+        }
+    }
 
     @media (min-width: 1024px) {
+      
         body {
-           
-            overflow: hidden; 
+            overflow-y: auto
         }
         h1 {
             font-size: 3.5em;
         }
-
         .dj-mixer {
             padding: 40px;
         }
-
         .deck-section {
-            display: flex; 
+            display: flex;
             gap: 50px;
             justify-content: space-between;
-            grid-template-columns: none; 
+            grid-template-columns: none;
         }
-
         .deck {
             flex: 1;
         }
-        
         .deck-title {
             font-size: 1.5em;
         }
-
         .pad-grid {
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
-
         .pad {
             font-size: 1em;
-            min-height: 200px;
-        }
-
-        .button-pare{
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            min-height: 100px;
+            min-height: 200px; 
         }
     }
+
+
 
 
 
@@ -174,8 +197,8 @@
                     <button class="pad lead"  onclick="sendKey('c')">Música 7</button>
                     <button class="pad chord"  onclick="sendKey('o')">Música 8</button>
                 </div>
-                <div class="button-pare">
-                    <button class="pad stop" onclick="sendKey('x')">PARE</button>
+                <div class="stop-container">
+                    <button class="stop-button" onclick="sendKey('x')">PARE</button>
                 </div>
             </div>
             
